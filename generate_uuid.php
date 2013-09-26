@@ -4,6 +4,8 @@
  */
 function gen_uuid() {
     mt_srand(crc32(serialize([microtime(true), $_SERVER['REMOTE_ADDR']])));
+    // For PHP < 5.4
+    // mt_srand(crc32(serialize(array(microtime(true), $_SERVER['REMOTE_ADDR']))));
     return sprintf( '%04x%04x-%04x-%04x-%04x-%04x%04x%04x',
         // 32 bits for "time_low"
         mt_rand( 0, 0xffff ), mt_rand( 0, 0xffff ),
